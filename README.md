@@ -1,56 +1,118 @@
-# Welcome to your Expo app 👋
+# 🍋 Little Lemon Food Ordering App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile application built with **React Native** and **Expo** for the Little Lemon restaurant. This project is the Capstone Project for the **Meta React Native Developer Professional Certificate** on Coursera.
 
-## Get started
+## 📱 About the App
 
-1. Install dependencies
+Little Lemon is a family-owned Mediterranean restaurant. This app allows customers to:
+- Register and create a profile.
+- Browse a dynamically fetched menu from a remote API.
+- Filter dishes by categories (Starters, Mains, Desserts, Drinks) and search by name.
+- Access the menu offline (data is cached locally using SQLite).
+- Update personal information, upload an avatar, and manage notification preferences.
 
+## ✨ Key Features
+
+- **🔐 Onboarding & Authentication:** First-time users are greeted with a registration form. Login state is persisted using `AsyncStorage`.
+- **🏠 Home Screen:**
+  - Hero section with restaurant description and search bar.
+  - Multi-select category filtering.
+  - **Debounced Search** (500ms) to optimize database queries.
+  - Menu list fetched from a remote API and cached locally.
+- **📴 Offline Support:** Menu data is stored in a local **SQLite** database (`little_lemon.db`). If the database is empty, the app fetches from the API; otherwise, it loads from SQLite.
+- **👤 Profile Screen:**
+  - Auto-populates data from onboarding.
+  - Image picker for avatar (with initials fallback).
+  - Phone number validation (US format).
+  - Persist changes to `AsyncStorage`.
+  - Logout functionality that clears all data and redirects to Onboarding.
+- **🎨 UI/UX:** Custom fonts (**Markazi Text** for display, **Karla** for body) and a color palette matching the Little Lemon brand.
+
+## 🛠️ Tech Stack
+
+| Category         | Technology                                                                                               |
+| :--------------- | :------------------------------------------------------------------------------------------------------- |
+| **Framework**    | [React Native](https://reactnative.dev/) + [Expo](https://expo.dev/)                                     |
+| **Language**     | TypeScript                                                                                               |
+| **Navigation**   | [Expo Router](https://docs.expo.dev/router/introduction/) (File-based routing)                           |
+| **Database**     | [expo-sqlite](https://docs.expo.dev/versions/latest/sdk/sqlite/)                                         |
+| **Storage**      | [@react-native-async-storage/async-storage](https://react-native-async-storage.github.io/async-storage/) |
+| **Image Picker** | [expo-image-picker](https://docs.expo.dev/versions/latest/sdk/imagepicker/)                              |
+| **Fonts**        | [expo-font](https://docs.expo.dev/versions/latest/sdk/font/)                                             |
+
+## 🚀 How to Run the Project
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/felfeit/coursera-react-app-capstone.git
+   cd coursera-react-app-capstone
+   ```
+
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. **Start the Expo development server:**
    ```bash
-   npx expo start
+   npx expo start -c
    ```
 
-In the output, you'll find options to open the app in a
+4. **Run the app:**
+   - **Android:** Scan the QR code with the **Expo Go** app.
+   - **iOS:** Scan the QR code with the default **Camera** app.
+   - **Emulator:** Press `a` for Android or `i` for iOS in the terminal.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📸 Screenshots
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+*(Tambahkan screenshot aplikasi kamu di sini. Upload gambar ke folder `assets/screenshots/` lalu sesuaikan link di bawah).*
 
-## Get a fresh project
+|                          Onboarding                           |                          Home                           |                          Profile                           |
+| :-----------------------------------------------------------: | :-----------------------------------------------------: | :--------------------------------------------------------: |
+| <img src="./assets/screenshots/onboarding.png" width="200" /> | <img src="./assets/screenshots/home.png" width="200" /> | <img src="./assets/screenshots/profile.png" width="200" /> |
 
-When you're ready, run:
+## 📂 Project Structure
 
-```bash
-npm run reset-project
+```text
+LittleLemon/
+├── assets/
+│   ├── fonts/                  # Custom fonts (Karla & Markazi Text)
+│   └── images/                 # App icons, favicon, & Little Lemon logo
+├── src/
+│   ├── app/                    # Expo Router (File-based routing)
+│   │   ├── (tabs)/             # Bottom Tab Screens
+│   │   │   ├── _layout.tsx     # Tab Navigator Configuration
+│   │   │   ├── index.tsx       # Home Screen
+│   │   │   └── profile.tsx     # Profile Screen
+│   │   ├── _layout.tsx         # Root Layout (Auth Check & Font Loading)
+│   │   └── onboarding.tsx      # Onboarding Screen
+│   ├── components/             # Reusable UI Components
+│   │   ├── Checkbox.tsx
+│   │   ├── Header.tsx
+│   │   ├── Hero.tsx
+│   │   ├── MenuBreakdown.tsx
+│   │   ├── MenuItem.tsx
+│   │   └── SplashScreen.tsx
+│   ├── constants/
+│   │   └── theme.ts            # Color Palette
+│   ├── hooks/
+│   │   └── useAuth.ts          # AsyncStorage Auth Logic
+│   ├── types/
+│   │   └── index.ts            # TypeScript Interfaces
+│   └── utils/
+│       ├── api.ts              # Remote API Fetching
+│       └── database.ts         # SQLite Database Operations
+├── app.json                    # Expo Configuration
+├── package.json
+└── tsconfig.json
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+## 🔗 API Reference
 
-### Other setup steps
+The menu data is fetched from the following API:
+- **Menu Data:** `https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/capstone.json`
+- **Images:** `https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/{imageName}?raw=true`
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## 📄 License
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This project is for educational purposes as part of the **Meta React Native Developer Professional Certificate** on Coursera.

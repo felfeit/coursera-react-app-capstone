@@ -52,7 +52,11 @@ export default function OnboardingScreen() {
             </Text>
           </View>
           <View style={styles.heroImageContainer}>
-            <View style={styles.heroImagePlaceholder} />
+            <Image 
+              source={require('../../assets/images/onboarding_image.png')} 
+              style={styles.heroImage}
+              resizeMode="cover"
+            />
           </View>
         </View>
 
@@ -156,11 +160,10 @@ const styles = StyleSheet.create({
   heroImageContainer: {
     justifyContent: 'center',
   },
-  heroImagePlaceholder: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-    backgroundColor: '#D3D3D3',
+  heroImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 12,
   },
   formContainer: {
     paddingHorizontal: 20,

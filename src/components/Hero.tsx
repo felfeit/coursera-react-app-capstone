@@ -18,7 +18,7 @@ export default function Hero({ searchQuery, onSearchChange }: HeroProps) {
           We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.
         </Text>
         <Image 
-          source={{ uri: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=300&auto=format&fit=crop' }} 
+          source={require('../../assets/images/hero_image.png')} 
           style={styles.heroImage} 
         />
       </View>
