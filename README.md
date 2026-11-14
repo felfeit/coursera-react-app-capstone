@@ -5,6 +5,7 @@ A mobile application built with **React Native** and **Expo** for the Little Lem
 ## 📱 About the App
 
 Little Lemon is a family-owned Mediterranean restaurant. This app allows customers to:
+
 - Register and create a profile.
 - Browse a dynamically fetched menu from a remote API.
 - Filter dishes by categories (Starters, Mains, Desserts, Drinks) and search by name.
@@ -43,17 +44,20 @@ Little Lemon is a family-owned Mediterranean restaurant. This app allows custome
 ## 🚀 How to Run the Project
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/felfeit/coursera-react-app-capstone.git
    cd coursera-react-app-capstone
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Start the Expo development server:**
+
    ```bash
    npx expo start -c
    ```
@@ -67,9 +71,9 @@ Little Lemon is a family-owned Mediterranean restaurant. This app allows custome
 
 *(Tambahkan screenshot aplikasi kamu di sini. Upload gambar ke folder `assets/screenshots/` lalu sesuaikan link di bawah).*
 
-|                          Onboarding                           |                          Home                           |                          Profile                           |
-| :-----------------------------------------------------------: | :-----------------------------------------------------: | :--------------------------------------------------------: |
-| <img src="./assets/screenshots/onboarding.png" width="200" /> | <img src="./assets/screenshots/home.png" width="200" /> | <img src="./assets/screenshots/profile.png" width="200" /> |
+|                              Onboarding                              |                              Home                              |                              Profile                              |
+| :------------------------------------------------------------------: | :------------------------------------------------------------: | :---------------------------------------------------------------: |
+| <img src="./assets/screenshots/onboarding_screen.jpg" width="200" /> | <img src="./assets/screenshots/home_screen.jpg" width="200" /> | <img src="./assets/screenshots/profile_screen.jpg" width="200" /> |
 
 ## 📂 Project Structure
 
@@ -110,6 +114,7 @@ LittleLemon/
 ## 🔗 API Reference
 
 The menu data is fetched from the following API:
+
 - **Menu Data:** `https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/capstone.json`
 - **Images:** `https://github.com/Meta-Mobile-Developer-PC/Working-With-Data-API/blob/main/images/{imageName}?raw=true`
 
