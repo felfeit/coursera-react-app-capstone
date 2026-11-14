@@ -1,18 +1,34 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+// src/app/_layout.tsx
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { useAuth } from '../hooks/useAuth';
+import { useFonts } from 'expo-font';
+import SplashScreen from '../components/SplashScreen';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+export default function RootLayout() {
+  const { isLoading, isOnboardingCompleted } = useAuth();
 
-SplashScreen.preventAutoHideAsync();
+  const [fontsLoaded] = useFonts({
+    'MarkaziText-Bold': require('../../assets/fonts/MarkaziText-Bold.ttf'),
+    'MarkaziText-Regular': require('../../assets/fonts/MarkaziText-Regular.ttf'),
+    'Karla-Bold': require('../../assets/fonts/Karla-Bold.ttf'),
+    'Karla-Regular': require('../../assets/fonts/Karla-Regular.ttf'),
+  });
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  if (isLoading || !fontsLoaded) {
+    return <SplashScreen />;
+  }
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <>
+      <StatusBar style="dark" />
+      <Stack screenOptions={{ headerShown: false }}>
+        {!isOnboardingCompleted ? (
+          <Stack.Screen name="onboarding" />
+        ) : (
+          <Stack.Screen name="(tabs)" />
+        )}
+      </Stack>
+    </>
   );
 }
